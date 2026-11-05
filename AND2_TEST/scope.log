@@ -1,0 +1,42 @@
+Mdi:ArrangeIcons
+wm geometry . 2320x1240+0+32
+Mdi:FullSize
+ScopeSigMgr:loadpffile /userspace/agminer/ece555/ECE555/AND2_TEST/test.tr0 1 openonly
+# PF:1
+wm geometry .sigmgr._PF:1 290x358+1160+671
+pf:read PF:1 v(in<0>) v(in<1>) v(y)
+# WF:1:1 WF:1:2 WF:1:3
+Graph addsignal {WF:1:1 WF:1:2 WF:1:3} -region {new new new} -yview {real(y) real(y) real(y)} -xview {real(x) real(x) real(x)} -tracehi {2 2 2}
+# Signal0 Signal1 Signal2
+wm geometry .sigmgr 467x236+1782+97
+Graph:Select Graph0
+Graph:DSel
+Graph itemselect Signal1 add
+# Signal1
+Graph sigconfig Signal1 -region 2 -rgnindex 1
+Graph:DSel
+Graph itemselect Signal0 add
+# Signal0
+Graph sigconfig Signal0 -region 1 -rgnindex 2
+Graph:DSel
+Graph axisconfig {AxisY(0,0) AxisX(0)} -range {{0.95152621527945 -0.040768062483138} {1.42104n 2.08445n}}
+GrMeas:Falltime Graph0 Signal2 {0.1 0.5 0.9} default default xyrangeAll
+# M:0
+GrMeas:Risetime Graph0 Signal2 {0.1 0.5 0.9} default default xyrangeAll
+# M:1
+Graph:DSel
+GrMeas:Select Graph0 M:1 4
+GrMeas:MoveText Graph0 M:1 4 84.0 22.0
+Graph:DSel
+GrMeas:Select Graph0 M:0 4
+GrMeas:MoveText Graph0 M:0 4 74.0 8.0
+GrMeas:Delay Graph0 Signal2 Signal1 rising either default default default default 0.5 0.5 xyrangeAll
+# M:2
+Graph:DSel
+GrMeas:Select Graph0 M:2 4
+GrMeas:MoveText Graph0 M:2 4 97.0 -16.0
+GrMeas:Delay Graph0 Signal2 Signal0 falling either default default default default 0.5 0.5 xyrangeAll
+# M:3
+Graph:DSel
+GrMeas:Select Graph0 M:3 4
+GrMeas:MoveText Graph0 M:3 4 97.0 -25.0

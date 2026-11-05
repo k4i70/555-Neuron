@@ -1,0 +1,131 @@
+Mdi:ArrangeIcons
+wm geometry . 900x785+-30+37
+Mdi:ArrangeIcons
+wm geometry . 900x785+30+52
+Mdi:ArrangeIcons
+wm geometry . 900x785+162+86
+Mdi:ArrangeIcons
+wm geometry . 900x785+248+112
+Mdi:ArrangeIcons
+wm geometry . 900x785+320+137
+Mdi:ArrangeIcons
+wm geometry . 900x785+376+156
+Mdi:ArrangeIcons
+wm geometry . 900x785+408+172
+Mdi:ArrangeIcons
+wm geometry . 900x785+433+185
+Mdi:ArrangeIcons
+wm geometry . 900x785+455+195
+Mdi:ArrangeIcons
+wm geometry . 900x785+470+202
+Mdi:ArrangeIcons
+wm geometry . 900x785+485+206
+Mdi:ArrangeIcons
+wm geometry . 900x785+503+212
+Mdi:ArrangeIcons
+wm geometry . 900x785+523+215
+Mdi:ArrangeIcons
+wm geometry . 900x785+541+217
+Mdi:ArrangeIcons
+wm geometry . 900x785+556+218
+Mdi:ArrangeIcons
+wm geometry . 900x785+573+219
+Mdi:ArrangeIcons
+wm geometry . 900x785+579+219
+Mdi:ArrangeIcons
+wm geometry . 900x785+591+219
+Mdi:ArrangeIcons
+wm geometry . 900x785+609+219
+Mdi:ArrangeIcons
+wm geometry . 900x785+632+218
+Mdi:ArrangeIcons
+wm geometry . 900x785+657+213
+Mdi:ArrangeIcons
+wm geometry . 900x785+678+208
+Mdi:ArrangeIcons
+wm geometry . 900x785+697+202
+Mdi:ArrangeIcons
+wm geometry . 900x785+711+196
+Mdi:ArrangeIcons
+wm geometry . 900x785+722+190
+Mdi:ArrangeIcons
+wm geometry . 900x785+727+186
+Mdi:ArrangeIcons
+wm geometry . 900x785+731+182
+Mdi:ArrangeIcons
+wm geometry . 900x785+732+181
+Mdi:ArrangeIcons
+wm geometry . 900x785+732+180
+Mdi:ArrangeIcons
+wm geometry . 900x785+733+179
+Mdi:ArrangeIcons
+wm geometry . 900x785+734+178
+Mdi:ArrangeIcons
+wm geometry . 900x785+736+175
+Mdi:ArrangeIcons
+wm geometry . 900x785+739+171
+Mdi:ArrangeIcons
+wm geometry . 900x785+742+166
+Mdi:ArrangeIcons
+wm geometry . 900x785+746+163
+Mdi:ArrangeIcons
+wm geometry . 900x785+749+159
+Mdi:ArrangeIcons
+wm geometry . 900x785+751+156
+Mdi:ArrangeIcons
+wm geometry . 900x785+753+154
+Mdi:ArrangeIcons
+wm geometry . 900x785+754+154
+Mdi:ArrangeIcons
+wm geometry . 900x785+755+154
+Mdi:ArrangeIcons
+wm geometry . 2320x1240+-61+-23
+Mdi:ArrangeIcons
+Mdi:FullSize
+ScopeSigMgr:loadpffile /userspace/agminer/ece555/ECE555/AND2_TEST/test.tr0 1 openonly
+# PF:1
+wm geometry .sigmgr._PF:1 290x358+1160+671
+pf:read PF:1 v(y) v(in<0>) v(in<1>)
+# WF:1:1 WF:1:2 WF:1:3
+Graph addsignal {WF:1:1 WF:1:2 WF:1:3} -region {new new new} -yview {real(y) real(y) real(y)} -xview {real(x) real(x) real(x)} -tracehi {2 2 2}
+# Signal0 Signal1 Signal2
+ScopeSigMgr:Unload 0 {{(1) test.tr0}}
+wm geometry .sigmgr 467x236+1782+97
+Graph:Select Graph0
+Graph:DSel
+Graph itemselect Signal1 add
+# Signal1
+Graph sigconfig Signal1 -region 2 -rgnindex 1
+Graph:DSel
+Graph itemselect Signal0 add
+# Signal0
+Graph sigconfig Signal0 -region 1 -rgnindex 2
+Graph:DSel
+Graph axisconfig {AxisY(0,0) AxisX(0)} -range {{0.97245139982716 -0.077111804066007} {1.40853n 2.09001n}}
+Graph axisconfig {AxisX(0) AxisY(0,0)} -range {{0.0 3n all} {-0.014613091945648 0.91527158021927 all}} -zoomed {0 0}
+Graph:DSel
+Graph axisconfig {AxisY(0,0) AxisX(0)} -range {{0.96474212130959 -0.02424817994547} {1.43634n 2.10253n}}
+GrMeas:Falltime Graph0 Signal0 {0.1 0.5 0.9} default default xyrangeAll
+# M:0
+GrMeas:Risetime Graph0 Signal0 {0.1 0.5 0.9} default default xyrangeAll
+# M:1
+GrMeas:Delay Graph0 Signal0 Signal2 rising either default default default default 0.5 0.5 xyrangeAll
+# M:2
+Graph:DSel
+GrMeas:Select Graph0 M:2 4
+GrMeas:MoveText Graph0 M:2 4 66.0 14.0
+GrMeas:MoveText Graph0 M:2 4 68.0 8.0
+Graph:DSel
+GrMeas:Select Graph0 M:1 4
+GrMeas:MoveText Graph0 M:1 4 54.0 -18.0
+Graph:DSel
+GrMeas:Select Graph0 M:0 4
+GrMeas:MoveText Graph0 M:0 4 48.0 -19.0
+GrMeas:Delay Graph0 Signal0 Signal1 falling either default default default default 0.5 0.5 xyrangeAll
+# M:3
+Graph:DSel
+GrMeas:Select Graph0 M:3 4
+GrMeas:MoveText Graph0 M:3 4 77.0 18.0
+Graph axisconfig {AxisY(0,0) AxisX(0)} -range {{0.263 0.626 } {1.6475n 1.895n }}
+Graph axisconfig {AxisY(0,0) AxisX(0)} -range {{0.05 0.85 } {1.51n 2.03n }}
+Graph axisconfig {AxisX(0) AxisY(0,0)} -range {{0.0 3n all} {-0.014613091945648 0.91527158021927 all}} -zoomed {0 0}
