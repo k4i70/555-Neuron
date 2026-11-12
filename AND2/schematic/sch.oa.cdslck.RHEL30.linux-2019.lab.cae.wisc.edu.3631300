@@ -1,0 +1,16 @@
+#
+# Edit Lock-Stake file. CAUTION: Please do not change.
+#
+# Information about current Edit Lock Owner.
+#
+LockStakeVersion               1.1
+LoginName                      jjfields3
+HostName                       linux-2019.lab.cae.wisc.edu
+ProcessIdentifier              3631300
+ProcessCreationTime_UTC        1793647161
+ProcessCreationTime_Readable   Mon Nov  2 13:19:21 2026 CST
+AppIdentifier                  OA File System Design Manager
+OSType                         unix
+ReasonForPlacingEditLock       OpenAccess edit lock
+FilePathUsedToEditLock         /userspace/jjfields3/ece555/ECE555/AND2/schematic/sch.oa.cdslck
+TimeEditLocked                 Mon Nov  2 13:20:05 2026 CST
