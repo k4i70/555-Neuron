@@ -1,0 +1,115 @@
+OPTIMIZED FIN COUNTS - NEURON (ASAP7, VDD=0.70 V, TT, FO4 load on Z0/Z1)
+==============================================================================
+Source: exhaustive-transition HSPICE testbench (test_neuron/runone.sh, 4860 events,
+schematic level, no layout parasitics). Every design below: 0 mismatches, 0 glitches.
+
+Area model: pMOS <= 3 fins and nMOS <= 2 fins fit in one finger (free).
+A 6-fin pMOS or 4-fin nMOS needs a 2nd finger ("extra gate"). "XF" = number of
+extra fingers over the whole flattened NEURON (FRONT is placed twice, so a change
+inside FRONT costs 2x). Fewer than 3p/2n never helped (it only added delay).
+
+Reference: current schematic (Nov 15) = 13 extra fingers, 48.9 ps worst.
+
+SUMMARY
+------------------------------------------------------------------------------
+ XF  worst    Z0 rise  Z0 fall  Z1 rise  Z1 fall   note
+  0   47.2 ps    47.2     42.6     39.9     32.3    
+  1   44.3 ps    44.3     42.7     39.9     32.2    
+  2   44.3 ps    44.3     42.7     39.9     32.2    (no gain over XF=1 -> use the XF=1 design)
+  3   42.6 ps    42.2     42.6     40.0     33.6    
+  4   42.0 ps    42.0     39.8     39.7     33.4    
+  5   42.0 ps    42.0     39.8     39.7     33.4    (no gain over XF=4 -> use the XF=4 design)
+  6   39.9 ps    39.3     39.9     38.3     32.2    
+  7   39.9 ps    39.3     39.9     38.3     32.2    (no gain over XF=6 -> use the XF=6 design)
+  8   39.1 ps    39.1     36.5     37.5     32.6    
+  9   38.7 ps    37.8     38.2     38.7     33.5    
+ 10   36.7 ps    36.7     36.5     35.3     33.5    
+
+Best value per finger: XF=1 (OAI221 MM7). Recommended if area allows: XF=10.
+
+FIN MATRIX  (nfin per transistor; * = 2 fingers; blank rows omitted = 3p/2n always)
+------------------------------------------------------------------------------
+cell     dev   type gate pin / position          0   1   2   3   4   5   6   7   8   9  10
+------------------------------------------------------------------------------------------
+NAND2Z   MM0   n    pin A, at output             2   2   2   2   2   2   2   2  4*  4*  4*
+NAND2Z   MM1   n    pin B, at rail               2   2   2   2   2   2  4*  4*  4*  4*  4*
+OAI221   MM9   n    pin D, middle                2   2   2  4*  4*  4*   2   2   2   2  4*
+OAI221   MM7   n    pin E, at rail               2  4*  4*  4*  4*  4*  4*  4*  4*  4*  4*
+OAI221   MM6   n    pin C, middle                2   2   2  4*  4*  4*   2   2   2   2  4*
+OAI32    MM8   n    pin E, at rail               2   2   2   2  4*  4*  4*  4*  4*  4*  4*
+OAI32    MM4   p    pin A, at output             3   3   3   3   3   3   3   3   3  6*   3
+OAI32    MM0   p    pin C, at rail               3   3   3   3   3   3  6*  6*  6*  6*  6*
+OAI32    MM3   p    pin B, middle                3   3   3   3   3   3  6*  6*  6*  6*  6*
+
+Where each cell is used:
+  NAND2Z   FRONT_A/XI1, FRONT_B/XI1 (Z -> ZA/ZB, big fanout)
+  NAND2    FRONT_A/XI0, FRONT_B/XI0 (net5, internal)
+  OAI21    FRONT_A/XI2, FRONT_B/XI2 (XN)
+  OAI221   NCNT/XI1 (R1)
+  OAI32    OUT/XI1 (drives Z0, FO4)
+  NOR      OUT/XI0 (drives Z1, FO4)
+  NOR3     UCNT/XI3 (V3)
+  NAND3    UCNT/XI1 (V1)
+  MAJI5M   NCNT/XI2 (R2), UCNT/XI2 (V2)
+  INV      NCNT/XI0, UCNT/XI0, OUT/XI2-4
+
+NAND2Z = a NEW cell (copy of NAND2) used only for FRONT/XI1. FRONT/XI0 keeps the
+plain NAND2 at 3p/2n. Without the new cell, upsizing NAND2 also upsizes XI0, which
+costs 4 more fingers (2 nMOS x 2 FRONTs) for no gain.
+
+DESIGN BY BUDGET  (only transistors that differ from 3p/2n; everything else 3p/2n)
+------------------------------------------------------------------------------
+XF= 0  worst 47.2 ps   [variant MIN]
+    all transistors 3-fin pMOS / 2-fin nMOS
+
+XF= 1  worst 44.3 ps   [variant O221_NE]
+    OAI221  MM7(n, pin E)=4
+
+XF= 2: use the XF=1 design (nothing at this budget beat it).
+
+XF= 3  worst 42.6 ps   [variant R2_NCD]
+    OAI221  MM9(n, pin D)=4, MM7(n, pin E)=4, MM6(n, pin C)=4
+
+XF= 4  worst 42.0 ps   [variant P4_NCD_NE]
+    OAI221  MM9(n, pin D)=4, MM7(n, pin E)=4, MM6(n, pin C)=4
+    OAI32   MM8(n, pin E)=4
+
+XF= 5: use the XF=4 design (nothing at this budget beat it).
+
+XF= 6  worst 39.9 ps   [variant P6_PBC_FZb_NE]
+    NAND2Z  MM1(n, pin B)=4
+    OAI221  MM7(n, pin E)=4
+    OAI32   MM8(n, pin E)=4, MM0(p, pin C)=6, MM3(p, pin B)=6
+
+XF= 7: use the XF=6 design (nothing at this budget beat it).
+
+XF= 8  worst 39.1 ps   [variant P8_PBC_FZN_NE]
+    NAND2Z  MM0(n, pin A)=4, MM1(n, pin B)=4
+    OAI221  MM7(n, pin E)=4
+    OAI32   MM8(n, pin E)=4, MM0(p, pin C)=6, MM3(p, pin B)=6
+
+XF= 9  worst 38.7 ps   [variant T_NE]
+    NAND2Z  MM0(n, pin A)=4, MM1(n, pin B)=4
+    OAI221  MM7(n, pin E)=4
+    OAI32   MM8(n, pin E)=4, MM4(p, pin A)=6, MM0(p, pin C)=6, MM3(p, pin B)=6
+
+XF=10  worst 36.7 ps   [variant P9_PBC_FZN_NE_NCD]
+    NAND2Z  MM0(n, pin A)=4, MM1(n, pin B)=4
+    OAI221  MM9(n, pin D)=4, MM7(n, pin E)=4, MM6(n, pin C)=4
+    OAI32   MM8(n, pin E)=4, MM0(p, pin C)=6, MM3(p, pin B)=6
+
+CHANGES FROM THE CURRENT SCHEMATIC (for any XF level)
+------------------------------------------------------------------------------
+  NAND2 (FRONT XI0): nMOS MM0, MM1 4 -> 2 fins (extra finger was wasted)
+  NOR   (OUT XI0, Z1): pMOS MM1, MM3 6 -> 3 fins (6 fins loaded R1, slowed Z0)
+  NOR3  (UCNT XI3):  pMOS MM0, MM1, MM2 6 -> 3 fins
+  then add the upsizes listed for the chosen XF level.
+
+Notes
+  - XF=9 is NOT a step toward XF=10: XF=10 drops OAI32 MM4 back to 3 and adds OAI221
+    MM6/MM9 instead. Go from XF=8 straight to XF=10 when adding area.
+  - OAI32 MM4 (pin A pMOS, at Z0) stays 3 in the XF=10 design: 6 fins adds drain cap on Z0 (tested worse).
+  - OAI221 pMOS and OAI21 nMOS upsizing made the design slower; keep them 3p/2n.
+  - At XF=10 the top paths are within 0.6 ps of each other (36.1-36.7 ps); every
+    further upsize tried (11-15 fingers) was slower. Re-verify after layout/PEX.
+  - Regenerate a design: python3 sizevar.py NEURON.cdl out.cdl <args> (see fins/round*.txt).

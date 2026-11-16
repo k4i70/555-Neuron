@@ -1,0 +1,19 @@
+# Round 1: single device-group doublings on top of the all-3p/2n baseline (MIN)
+O32_PABC   --min OAI32:MM4=6,MM3=6,MM0=6
+O32_PDE    --min OAI32:MM2=6,MM1=6
+O32_NABC   --min OAI32:MM6=4,MM9=4,MM5=4
+O32_NDE    --min OAI32:MM7=4,MM8=4
+O221_NAB   --min OAI221:MM5=4,MM8=4
+O221_NCD   --min OAI221:MM6=4,MM9=4
+O221_NE    --min OAI221:MM7=4
+O221_NALL  --min OAI221:n=4
+O221_P     --min OAI221:p=6
+FZ_N       --min FRONT/XI1=NAND2Z:n=4
+FZ_P       --min FRONT/XI1=NAND2Z:p=6
+F21_P      --min OAI21:p=6
+F21_N      --min OAI21:n=4
+FX_N       --min FRONT/XI0=NAND2X:n=4
+NOR_P      --min NOR:p=6
+NOR_N      --min NOR:n=4
+NOR3_P     --min NOR3:p=6
+NINV       --min NCNT/XI0=INVB:p=6,n=4
