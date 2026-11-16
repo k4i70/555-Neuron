@@ -1,0 +1,140 @@
+==============================================================================
+Functional check: 4860 events, 0 mismatches, 40 output glitches
+  worst glitch settle: 34.0 ps on Z1 (2 crossings, (0, 1, -1, -1, -1) -> (0, 1, -1, 0, -1))
+
+Worst delay per output/transition (input pin 50% -> output 50%), VDD=0.70
+  Z0 rise : worst   45.2 ps  mean  33.8  n=796
+  Z0 fall : worst   52.4 ps  mean  42.4  n=796
+  Z1 rise : worst   30.9 ps  mean  26.7  n=378
+  Z1 fall : worst   43.1 ps  mean  33.6  n=378
+
+Worst delay per source operand -> output
+  WB       -> Z0 :   52.4 ps
+  XB       -> Z0 :   52.3 ps
+  WA       -> Z0 :   52.1 ps
+  XA       -> Z0 :   51.9 ps
+  B        -> Z0 :   50.7 ps
+  XA+XB    -> Z0 :   50.5 ps
+  WB+XA+XB -> Z0 :   48.7 ps
+  WA       -> Z1 :   43.1 ps
+  XA       -> Z1 :   42.5 ps
+  WB       -> Z1 :   39.6 ps
+  WA+WB+XA+XB -> Z0 :   39.1 ps
+  XB       -> Z1 :   38.7 ps
+  B        -> Z1 :   38.5 ps
+  B+WA+WB+XA+XB -> Z0 :   38.3 ps
+  WB+XA+XB -> Z1 :   37.8 ps
+  XA+XB    -> Z1 :   36.8 ps
+
+Top critical paths (unique gate/pin/direction sequences)
+#1    52.4 ps  Z0 fall  (from WB1, ops WB: (0, 0, -1, 0, -1) -> (0, 0, 1, 0, -1))
+      FRONT_B/XI0(NAND2)           pin B  PUN   4.8 ps  slew 5.4
+      FRONT_B/XI2(OAI21)           pin A  PDN   6.3 ps  slew 8.2
+      NCNT/XI1(OAI221)             pin C  PUN  13.4 ps  slew 17.0
+      OUT/XI1(OAI32)               pin A  PDN  27.9 ps  slew 50.2
+#2    52.3 ps  Z0 fall  (from XB1, ops XB: (0, 0, -1, 0, -1) -> (0, 0, -1, 0, 1))
+      FRONT_B/XI0(NAND2)           pin A  PUN   4.2 ps  slew 4.1
+      FRONT_B/XI2(OAI21)           pin A  PDN   6.5 ps  slew 10.2
+      NCNT/XI1(OAI221)             pin C  PUN  13.7 ps  slew 16.8
+      OUT/XI1(OAI32)               pin A  PDN  27.9 ps  slew 50.2
+#3    52.1 ps  Z0 fall  (from WA1, ops WA: (0, -1, 0, -1, 1) -> (0, 1, 0, -1, 1))
+      FRONT_A/XI0(NAND2)           pin B  PUN   4.8 ps  slew 5.2
+      FRONT_A/XI2(OAI21)           pin A  PDN   7.4 ps  slew 11.8
+      NCNT/XI1(OAI221)             pin A  PUN  11.9 ps  slew 14.1
+      OUT/XI1(OAI32)               pin A  PDN  27.9 ps  slew 50.3
+#4    51.9 ps  Z0 fall  (from XA1, ops XA: (0, -1, 1, -1, 0) -> (0, -1, 1, 1, 0))
+      FRONT_A/XI0(NAND2)           pin A  PUN   4.2 ps  slew 4.1
+      FRONT_A/XI2(OAI21)           pin A  PDN   7.6 ps  slew 13.7
+      NCNT/XI1(OAI221)             pin A  PUN  12.2 ps  slew 14.6
+      OUT/XI1(OAI32)               pin A  PDN  28.0 ps  slew 50.1
+#5    51.7 ps  Z0 fall  (from WA0, ops WA: (0, 0, 1, 1, 1) -> (0, 1, 1, 1, 1))
+      FRONT_A/XI1(NAND2)           pin B  PDN   6.8 ps  slew 10.7
+      UCNT/XI2(MAJI5M)             pin A  PUN   9.7 ps  slew 14.3
+      OUT/XI1(OAI32)               pin C  PDN  35.2 ps  slew 59.5
+#6    51.5 ps  Z0 fall  (from WB0, ops WB: (1, 1, 1, 1, 1) -> (1, 1, 0, 1, 1))
+      FRONT_B/XI1(NAND2)           pin B  PUN   7.6 ps  slew 11.2
+      UCNT/XI3(NOR3)               pin B  PDN   7.2 ps  slew 8.0
+      OUT/XI4(INV)                 pin IN PUN   3.6 ps  slew 4.0
+      OUT/XI1(OAI32)               pin E  PDN  33.1 ps  slew 58.1
+#7    51.4 ps  Z0 fall  (from XA0, ops XA: (0, 1, -1, 0, -1) -> (0, 1, -1, 1, -1))
+      FRONT_A/XI1(NAND2)           pin A  PDN   6.1 ps  slew 10.9
+      UCNT/XI2(MAJI5M)             pin A  PUN   9.9 ps  slew 14.4
+      OUT/XI1(OAI32)               pin C  PDN  35.3 ps  slew 60.0
+#8    50.7 ps  Z0 fall  (from B0, ops B: (0, 0, 1, 1, 1) -> (1, 0, 1, 1, 1))
+      UCNT/XI0(INV)                pin IN PDN   5.7 ps  slew 11.6
+      UCNT/XI2(MAJI5M)             pin B  PUN  10.8 ps  slew 13.5
+      OUT/XI1(OAI32)               pin C  PDN  34.2 ps  slew 59.8
+#9    50.5 ps  Z0 fall  (from WB0, ops WB: (0, 1, 0, 1, 1) -> (0, 1, 1, 1, 1))
+      FRONT_B/XI1(NAND2)           pin B  PDN   6.6 ps  slew 9.4
+      UCNT/XI2(MAJI5M)             pin C  PUN   8.8 ps  slew 14.9
+      OUT/XI1(OAI32)               pin C  PDN  35.1 ps  slew 60.1
+#10   50.5 ps  Z0 fall  (from WB1, ops WB: (0, 0, 1, 0, 1) -> (0, 0, -1, 0, 1))
+      FRONT_B/XI2(OAI21)           pin C  PDN   8.7 ps  slew 10.3
+      NCNT/XI1(OAI221)             pin C  PUN  13.6 ps  slew 16.4
+      OUT/XI1(OAI32)               pin A  PDN  28.2 ps  slew 50.0
+#11   50.5 ps  Z0 fall  (from XB0, ops XB: (1, 1, -1, 1, -1) -> (1, 1, -1, 1, 0))
+      FRONT_B/XI1(NAND2)           pin A  PUN   7.1 ps  slew 10.1
+      UCNT/XI3(NOR3)               pin B  PDN   7.1 ps  slew 8.1
+      OUT/XI4(INV)                 pin IN PUN   3.4 ps  slew 3.7
+      OUT/XI1(OAI32)               pin E  PDN  32.9 ps  slew 58.7
+#12   50.4 ps  Z0 fall  (from WA0, ops WA: (1, 1, -1, 1, -1) -> (1, 0, -1, 1, -1))
+      FRONT_A/XI1(NAND2)           pin B  PUN   8.5 ps  slew 13.0
+      UCNT/XI3(NOR3)               pin A  PDN   5.8 ps  slew 6.2
+      OUT/XI4(INV)                 pin IN PUN   3.2 ps  slew 3.5
+      OUT/XI1(OAI32)               pin E  PDN  32.9 ps  slew 58.1
+#13   49.8 ps  Z0 fall  (from XB0, ops XB: (1, 1, 1, 0, 0) -> (1, 1, 1, 0, 1))
+      FRONT_B/XI1(NAND2)           pin A  PDN   5.7 ps  slew 11.5
+      UCNT/XI2(MAJI5M)             pin C  PUN   9.9 ps  slew 13.4
+      OUT/XI1(OAI32)               pin C  PDN  34.3 ps  slew 59.0
+#14   49.8 ps  Z0 fall  (from B0, ops B: (1, 1, 1, 1, 1) -> (0, 1, 1, 1, 1))
+      UCNT/XI0(INV)                pin IN PUN   6.2 ps  slew 8.9
+      UCNT/XI3(NOR3)               pin C  PDN   7.8 ps  slew 10.3
+      OUT/XI4(INV)                 pin IN PUN   3.7 ps  slew 4.4
+      OUT/XI1(OAI32)               pin E  PDN  32.2 ps  slew 58.8
+#15   49.6 ps  Z0 fall  (from XA0, ops XA: (1, 1, -1, 1, -1) -> (1, 1, -1, 0, -1))
+      FRONT_A/XI1(NAND2)           pin A  PUN   7.9 ps  slew 12.0
+      UCNT/XI3(NOR3)               pin A  PDN   5.7 ps  slew 6.0
+      OUT/XI4(INV)                 pin IN PUN   3.3 ps  slew 3.5
+      OUT/XI1(OAI32)               pin E  PDN  32.8 ps  slew 58.0
+
+Gate criticality (stages on arcs >= 85% of worst = 52.4 ps; 377 arcs)
+  OUT/XI1(OAI32)               PDN  on  364 arcs  avg  30.4 ps  max  35.3 ps
+  UCNT/XI2(MAJI5M)             PUN  on  137 arcs  avg   9.8 ps  max  10.8 ps
+  NCNT/XI1(OAI221)             PUN  on   71 arcs  avg  12.9 ps  max  13.8 ps
+  UCNT/XI1(NAND3)              PDN  on  107 arcs  avg   8.3 ps  max   9.0 ps
+  OUT/XI3(INV)                 PUN  on  107 arcs  avg   4.6 ps  max   4.7 ps
+  FRONT_A/XI1(NAND2)           PUN  on   62 arcs  avg   7.2 ps  max   8.5 ps
+  FRONT_A/XI1(NAND2)           PDN  on   50 arcs  avg   6.5 ps  max   7.0 ps
+  FRONT_B/XI1(NAND2)           PUN  on   49 arcs  avg   6.4 ps  max   7.7 ps
+  UCNT/XI0(INV)                PUN  on   51 arcs  avg   6.2 ps  max   6.2 ps
+  FRONT_A/XI2(OAI21)           PDN  on   37 arcs  avg   8.2 ps  max   9.9 ps
+  FRONT_B/XI1(NAND2)           PDN  on   48 arcs  avg   6.1 ps  max   6.6 ps
+  UCNT/XI3(NOR3)               PDN  on   40 arcs  avg   6.8 ps  max   7.9 ps
+  UCNT/XI2(MAJI5M)             PDN  on   13 arcs  avg  19.0 ps  max  19.1 ps
+  OUT/XI1(OAI32)               PUN  on   13 arcs  avg  18.7 ps  max  18.8 ps
+  FRONT_B/XI2(OAI21)           PDN  on   33 arcs  avg   7.2 ps  max   8.8 ps
+  UCNT/XI0(INV)                PDN  on   40 arcs  avg   5.7 ps  max   5.8 ps
+  OUT/XI4(INV)                 PUN  on   40 arcs  avg   3.4 ps  max   3.8 ps
+  FRONT_A/XI0(NAND2)           PUN  on   20 arcs  avg   4.5 ps  max   4.8 ps
+  FRONT_B/XI0(NAND2)           PUN  on   20 arcs  avg   4.5 ps  max   4.8 ps
+  NCNT/XI2(MAJI5M)             PDN  on    7 arcs  avg  12.3 ps  max  13.2 ps
+
+Per-gate worst stage delay (all events)
+  OUT/XI1(OAI32)               PUN  21.8 ps  PDN  35.3 ps   fins n=5 p=18
+  UCNT/XI2(MAJI5M)             PUN  10.8 ps  PDN  19.1 ps   fins n=5 p=15
+  NCNT/XI1(OAI221)             PUN  15.9 ps  PDN  12.0 ps   fins n=15 p=15
+  NCNT/XI2(MAJI5M)             PUN   8.0 ps  PDN  14.5 ps   fins n=5 p=15
+  OUT/XI0(NOR)                 PUN  10.3 ps  PDN  13.5 ps   fins n=4 p=12
+  FRONT_A/XI2(OAI21)           PUN  10.3 ps  PDN   9.9 ps   fins n=6 p=9
+  UCNT/XI1(NAND3)              PUN   6.4 ps  PDN   9.0 ps   fins n=6 p=9
+  FRONT_B/XI2(OAI21)           PUN   8.7 ps  PDN   8.9 ps   fins n=6 p=9
+  UCNT/XI3(NOR3)               PUN   8.6 ps  PDN   7.9 ps   fins n=6 p=18
+  FRONT_A/XI1(NAND2)           PUN   8.5 ps  PDN   7.2 ps   fins n=8 p=6
+  OUT/XI2(INV)                 PUN   8.2 ps  PDN   5.5 ps   fins n=2 p=3
+  FRONT_B/XI1(NAND2)           PUN   7.7 ps  PDN   6.6 ps   fins n=8 p=6
+  UCNT/XI0(INV)                PUN   6.2 ps  PDN   6.5 ps   fins n=2 p=3
+  FRONT_A/XI0(NAND2)           PUN   4.9 ps  PDN   4.2 ps   fins n=8 p=6
+  FRONT_B/XI0(NAND2)           PUN   4.8 ps  PDN   4.1 ps   fins n=8 p=6
+  NCNT/XI0(INV)                PUN   4.7 ps  PDN   4.8 ps   fins n=2 p=3
+  OUT/XI3(INV)                 PUN   4.7 ps  PDN   3.3 ps   fins n=2 p=3
+  OUT/XI4(INV)                 PUN   3.8 ps  PDN   3.5 ps   fins n=2 p=3

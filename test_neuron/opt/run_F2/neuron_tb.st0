@@ -1,0 +1,54 @@
+****** PrimeSim HSPICE -- Y-2026.03 linux64 (Feb 26 2026 10510643) ******
+Input File: neuron_tb.sp
+lic:
+lic: FLEXlm: SDK_15.3
+lic: USER:   agminer              HOSTNAME: linux-2622
+lic: HOSTID: 7f0101               PID:      6521
+lic: Using FLEXlm license file:
+lic: 27180@synopsys.license.cae.wisc.edu
+lic: Checkout 1 hspice
+lic: License/Maintenance for hspice will expire on 23-jan-2027/2024.09
+lic: 3(in_use)/50(total) FLOATING license(s) on SERVER 27180@synopsys.license.cae.wisc.edu
+lic:
+
+ init: begin read circuit files, cpu clock= 5.42E-01
+       option search = /srv/auto/apps/synopsys-2026/hspice/Y-2026.03/hspice/parts/ad
+       option search = /srv/auto/apps/synopsys-2026/hspice/Y-2026.03/hspice/parts/behave
+       option search = /srv/auto/apps/synopsys-2026/hspice/Y-2026.03/hspice/parts/bjt
+       option search = /srv/auto/apps/synopsys-2026/hspice/Y-2026.03/hspice/parts/burr_brn
+       option search = /srv/auto/apps/synopsys-2026/hspice/Y-2026.03/hspice/parts/comlinear
+       option search = /srv/auto/apps/synopsys-2026/hspice/Y-2026.03/hspice/parts/dio
+       option search = /srv/auto/apps/synopsys-2026/hspice/Y-2026.03/hspice/parts/fet
+       option search = /srv/auto/apps/synopsys-2026/hspice/Y-2026.03/hspice/parts/lin_tech
+       option search = /srv/auto/apps/synopsys-2026/hspice/Y-2026.03/hspice/parts/pci
+       option search = /srv/auto/apps/synopsys-2026/hspice/Y-2026.03/hspice/parts/signet
+       option search = /srv/auto/apps/synopsys-2026/hspice/Y-2026.03/hspice/parts/ti
+       option search = /srv/auto/apps/synopsys-2026/hspice/Y-2026.03/hspice/parts/tline
+       option search = /srv/auto/apps/synopsys-2026/hspice/Y-2026.03/hspice/parts/xilinx
+       option post =     1.00
+       option post_version =    2.001E+03
+       option ingold =     2.00
+ init: end read circuit files, cpu clock= 6.04E-01 peak memory=     494 mb
+ init: begin check errors, cpu clock= 6.04E-01
+ init: end check errors, cpu clock= 8.34E-01 peak memory=     494 mb
+ init: begin setup matrix, pivot=     0 cpu clock= 8.34E-01
+       establish matrix -- done, cpu clock= 8.46E-01 peak memory=     494 mb
+       re-order matrix -- done, cpu clock= 8.50E-01 peak memory=     494 mb
+ init: end setup matrix, cpu clock= 8.61E-01 peak memory=     494 mb
+ dcop: begin dcop, cpu clock= 8.61E-01
+ dcop: end dcop, cpu clock= 8.93E-01 peak memory=     494 mb tot_iter=      21
+ output: neuron_tb.tr
+ sweep: tran tran0    begin, stop_t=  9.72E-07 #sweeps=**** cpu clock= 9.00E-01
+ tran: time= 9.7240E-08 tot_iter=   52005 conv_iter=   18318 cpu clock= 8.14E+00
+ tran: time= 1.9448E-07 tot_iter=  107024 conv_iter=   37558 cpu clock= 1.50E+01
+ tran: time= 2.9176E-07 tot_iter=  163291 conv_iter=   57196 cpu clock= 2.21E+01
+ tran: time= 3.8898E-07 tot_iter=  218771 conv_iter=   76604 cpu clock= 3.09E+01
+ tran: time= 4.8620E-07 tot_iter=  275690 conv_iter=   96420 cpu clock= 3.79E+01
+ tran: time= 5.8344E-07 tot_iter=  334832 conv_iter=  116903 cpu clock= 4.52E+01
+ tran: time= 6.8070E-07 tot_iter=  391540 conv_iter=  136690 cpu clock= 5.24E+01
+ tran: time= 7.7793E-07 tot_iter=  440690 conv_iter=  154280 cpu clock= 6.13E+01
+ tran: time= 8.7518E-07 tot_iter=  491532 conv_iter=  172359 cpu clock= 6.76E+01
+ tran: time= 9.7240E-07 tot_iter=  543065 conv_iter=  190611 cpu clock= 7.42E+01
+ sweep: tran tran0    end, cpu clock= 7.42E+01 peak memory=     494 mb
+>info:         ***** hspice job concluded
+ lic: Release hspice token(s)

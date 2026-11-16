@@ -1,0 +1,7 @@
+# simulator waveforms (large; regenerate with runone.sh)
+*.raw
+*.tr0
+# netlister scratch, python cache, editor swap files
+.netlist/
+__pycache__/
+*.swp

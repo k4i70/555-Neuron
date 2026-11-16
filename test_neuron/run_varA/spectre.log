@@ -1,0 +1,209 @@
+
+Spectre (R) Circuit Simulator
+Version 25.1.0.367.isr9 64bit -- 14 May 2026
+Copyright (C) 1989-2026 Cadence Design Systems, Inc. All rights reserved worldwide. Cadence and Spectre are registered trademarks of Cadence Design Systems, Inc. All others are the property of their respective holders.
+
+Includes RSA BSAFE(R) Cryptographic or Security Protocol Software from RSA Security, Inc.
+
+User: agminer   Host: linux-2622   HostID: 7F0101   PID: 1171395
+Memory  available: 22.0235 GB  physical: 33.3298 GB
+Linux   : AlmaLinux release 8.10 (Cerulean Leopard)
+CPU Type: Intel(R) Core(TM) i5-14600
+        Socket: Processors [Frequency] (Hyperthreaded Processor)
+        0:       0 [2512.4] (  1 ),  1 [4796.4] (),  2 [4367.5] (  3 )
+                 3 [800.0] (),  4 [1228.3] (  5 ),  5 [800.0] (),  6 [1966.0] (  7 )
+                 7 [4716.5] (),  8 [3742.2] (  9 ),  9 [800.0] (), 10 [3863.0] ( 11 )
+                11 [800.0] (), 12 [3321.6] (), 13 [3429.0] (), 14 [2870.8] (), 15 [2252.9] ()
+                16 [3124.0] (), 17 [1162.0] (), 18 [800.0] (), 19 [3501.4] ()
+        
+System load averages (1min, 5min, 15min) : 36.9 %, 13.7 %, 6.2 %
+Hyperthreading is enabled
+HPC is enabled
+
+
+Simulating `neuron_tb.sp' on linux-2622 at 7:24:36 PM, Sun Nov 15, 2026 (process id: 1171395).
+Current working directory: /userspace/agminer/ece555/neuron_sta/run_varA
+Command line:
+    /srv/auto/apps/cadence/SPECTRE251/tools.lnx86/bin/spectre -64  \
+        neuron_tb.sp -format nutbin +aps +log spectre.log
+
+Licensing Information:
+[19:24:36.107978] Configured Lic search path (24.01-s002): 5280@cadence.license.cae.wisc.edu:1717@mentor.license.cae.wisc.edu
+
+Licensing Information:
+[19:24:37.033315] Periodic Lic check successful
+
+Loading /srv/auto/apps/cadence/SPECTRE251/tools.lnx86/cmi/lib/64bit/5.0/libinfineon_sh.so ...
+Loading /srv/auto/apps/cadence/SPECTRE251/tools.lnx86/cmi/lib/64bit/5.0/libphilips_I_sh.so ...
+Loading /srv/auto/apps/cadence/SPECTRE251/tools.lnx86/cmi/lib/64bit/5.0/libphilips_sh.so ...
+Loading /srv/auto/apps/cadence/SPECTRE251/tools.lnx86/cmi/lib/64bit/5.0/libsparam_sh.so ...
+Loading /srv/auto/apps/cadence/SPECTRE251/tools.lnx86/cmi/lib/64bit/5.0/libstmodels_sh.so ...
+Reading file:  /userspace/agminer/ece555/neuron_sta/run_varA/neuron_tb.sp
+Reading file:  /srv/auto/apps/cadence/SPECTRE251/tools.lnx86/spectre/etc/configs/spectre.cfg
+Reading file:  /srv/auto/apps/asap7pdk/2022-fixed/asap7PDK_r1p7/models/hspice/7nm_TT_160803.pm
+Time for NDB Parsing: CPU = 74.972 ms, elapsed = 271.385 ms.
+Time accumulated: CPU = 223.211 ms, elapsed = 271.387 ms.
+Peak resident memory used = 190 Mbytes.
+
+Time for Elaboration: CPU = 10.071 ms, elapsed = 17.427 ms.
+Time accumulated: CPU = 233.341 ms, elapsed = 288.872 ms.
+Peak resident memory used = 200 Mbytes.
+
+
+Time for EDB Visiting: CPU = 1.343 ms, elapsed = 1.34301 ms.
+Time accumulated: CPU = 234.728 ms, elapsed = 290.258 ms.
+Peak resident memory used = 202 Mbytes.
+
+
+Notice from spectre during initial setup.
+    Multithreading is disabled due to the size of the design being too small.
+
+
+Netlist title:
+        * NEURON exhaustive transition testbench (generated)
+
+
+Global user options:
+               post = 1
+
+Scoped user options:
+
+Circuit inventory:
+              nodes 87
+            bsimcmg 150   
+            vsource 12    
+
+Analysis and control statement inventory:
+               tran 1     
+
+Output statements:
+             .probe 0     
+           .measure 0     
+               save 0     
+
+
+Notice from spectre during initial setup.
+    1 vsources are shorted because their absolute value is less than or equal to 'vabsshort'.
+    APS enabled.
+
+Time for parsing: CPU = 1.3 ms, elapsed = 4.27485 ms.
+Time accumulated: CPU = 236.082 ms, elapsed = 294.587 ms.
+Peak resident memory used = 206 Mbytes.
+
+~~~~~~~~~~~~~~~~~~~~~~
+Pre-Simulation Summary
+~~~~~~~~~~~~~~~~~~~~~~
+   -   (APS) Multi-threading. The recommended number of threads is 1, consider adding +mt=1 on command line.
+~~~~~~~~~~~~~~~~~~~~~~
+
+********************************************************
+Transient Analysis `timeSweep': time = (0 s -> 972.4 ns)
+********************************************************
+
+Notice from spectre during IC analysis, during transient analysis `timeSweep'.
+    GminDC = 1 pS is large enough to noticeably affect the DC solution.
+        dV(xdut.XI4.XI1.net9) = 325.674 uV
+        Use the `gmin_check' option to eliminate or expand this report.
+
+Convergence achieved in 23 iterations.
+DC simulation time: CPU = 5.235 ms, elapsed = 5.24116 ms.
+
+Notice from spectre during transient analysis `timeSweep'.
+    No outputs were found. Loosening output filter criterion to `allpub'.
+
+Important parameter values:
+    start = 0 s
+    outputstart = 0 s
+    stop = 972.4 ns
+    step = 1 ps
+    maxstep = 19.448 ns
+    ic = all
+    useprevic = no
+    skipdc = no
+    reltol = 1e-03
+    abstol(V) = 1 uV
+    abstol(I) = 1 pA
+    temp = 27 C
+    tnom = 27 C
+    tempeffects = all
+    errpreset = moderate
+    method = traponly
+    lteratio = 3.5
+    relref = sigglobal
+    cmin = 0 F
+    gmin = 1 pS
+    rabsshort = 1 mOhm
+
+
+Notice from spectre during transient analysis `timeSweep'.
+    Multithreading is disabled due to the size of the design being too small.
+
+
+Output and IC/nodeset summary:
+                 save   11      (current)
+                 save   87      (voltage)
+
+
+Notice from spectre at time = 600 ps during transient analysis `timeSweep'.
+    Found trapezoidal ringing on node lo0_Z0.
+
+.
+
+Notice from spectre at time = 12 ns during transient analysis `timeSweep'.
+    Found trapezoidal ringing on node xdut.XI1.XI2.net3.
+
+..
+
+Notice from spectre at time = 24 ns during transient analysis `timeSweep'.
+    Found trapezoidal ringing on node xdut.XI1.XI2.net3.
+Notice from spectre at time = 32.6 ns during transient analysis `timeSweep'.
+    Found trapezoidal ringing on node lo0_Z0.
+Notice from spectre at time = 33.8 ns during transient analysis `timeSweep'.
+    Found trapezoidal ringing on node lo0_Z0.
+        Further occurrences of this notice will be suppressed.
+
+......9......8......7......6......5......4......3......2..
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Post-Transient Simulation Summary
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   -   To further speed up simulation, consider
+          add ++aps on command line
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+During simulation, the CPU load for active processors is :
+         0 (2.4 %)       1 (4.3 %)       2 (4.8 %)       3 (1.8 %)
+         4 (5.7 %)       5 (20.8 %)      6 (6.0 %)       8 (19.6 %)
+         9 (27.6 %)     10 (11.3 %)     11 (20.5 %)     12 (1.5 %)
+        Total: 130.0%
+
+Spectre received SIGINT.
+About to end simulation, please wait for a moment...
+
+Error found by spectre at time = 804.207 ns during transient analysis `timeSweep'.
+    ERROR (SPECTRE-25): The simulation is stopped either by the user or the farm.
+
+
+Saving the states into file at t=804.205 ns...
+State File: ./neuron_tb.sp.timeSweep.srf.
+
+Maximum value achieved for any signal of each quantity: 
+V: V(xdut.XI2.XI1.nAB) = 1.096 V
+I: I(vdd:p) = 542 uA
+Licensing Information:
+Lic Summary:
+[19:25:36.329169] Cdslmd servers:5280@cadence.license.cae.wisc.edu:1717@mentor.license.cae.wisc.edu
+[19:25:36.329201] Feature usage summary:
+[19:25:36.329202] Virtuoso_Multi_mode_Simulation
+
+
+Killed by user.
+
+Aggregate audit (7:25:36 PM, Sun Nov 15, 2026):
+Time used: CPU = 57.4 s, elapsed = 59.5 s, util. = 96.4%.
+Time spent in licensing: elapsed = 87 ms.
+Peak memory used = 216 Mbytes.
+Simulation started at: 7:24:36 PM, Sun Nov 15, 2026, ended at: 7:25:36 PM, Sun Nov 15, 2026, with elapsed time (wall clock): 59.5 s.
+spectre completes with 1 error, 0 warnings, and 156 notices.
+spectre terminated prematurely due to fatal error.

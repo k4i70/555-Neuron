@@ -1,0 +1,3 @@
+Using: /srv/auto/apps/synopsys-2026/hspice/Y-2026.03/hspice/linux64/hspice  -i 'neuron_tb.sp' -o 'neuron_tb'
+
+>info:         ***** hspice job concluded
