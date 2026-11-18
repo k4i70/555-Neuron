@@ -1,0 +1,4 @@
+- [ ] Extra fingers (neuron_text/optimized_fins.txt)
+- [ ] Make nmos all 3 fins
+- [ ] NOR3 6 -> 3 gates
+- [ ] 
