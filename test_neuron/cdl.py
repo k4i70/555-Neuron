@@ -145,3 +145,22 @@ if __name__ == '__main__':
     tabs = leaf_tables(subs)
     for n, (g, y, t) in tabs.items():
         print(n, g, '->', y, ''.join(str(t[k]) for k in sorted(t)))
+
+def flatten_gates(subs, tabs, top, prefix='xdut'):
+    """Flatten `top` into leaf gates. Nets are named like the HSPICE hierarchy
+    under instance `prefix` ('xdut.XI2.net3'); top-level pins keep their name.
+    Each gate: path, cell, ins{pin: net}, out (net), y (output pin), mos."""
+    gates = []
+    def walk(cell, pfx, netmap):
+        for inst in subs[cell]['inst']:
+            sub = subs[inst['cell']]
+            m = {p: netmap.get(n, pfx + '.' + n) for p, n in zip(sub['pins'], inst['nets'])}
+            path = pfx + '.' + inst['name']
+            if inst['cell'] in tabs:
+                g, y, _ = tabs[inst['cell']]
+                gates.append(dict(path=path, cell=inst['cell'], ins={p: m[p] for p in g},
+                                  out=m[y], y=y, mos=sub['mos']))
+            else:
+                walk(inst['cell'], path, m)
+    walk(top, prefix, {p: p for p in subs[top]['pins']})
+    return gates

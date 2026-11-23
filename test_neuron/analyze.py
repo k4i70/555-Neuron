@@ -59,6 +59,10 @@ W = LC()
 for i, n in enumerate(hnames):
     if n.lower().startswith('v('):          # node voltages only; 'v(xdut.xi0.net5' -> 'xdut.xi0.net5'
         W[n[2:].rstrip(')').lower()] = data[:, i]
+# post-layout (xACT) run: the testbench only probes one PEX node per schematic
+# net (see pex.py); alias those nodes back to the schematic net names
+for net, node in ev.get('nodemap', {}).items():
+    W[net.lower()] = W[node]
 names = list(W)
 
 def crossings(v, lvl):
@@ -76,24 +80,7 @@ def val_at(n, t):
     return int(np.interp(t, T, W[n]) > VDD / 2)
 
 # ---------------- flatten DUT into gates ----------------
-gates = []        # dict(path, cell, ins{pin:net}, out:net)
-def flatten(cell, prefix, netmap):
-    c = subs[cell]
-    for inst in c['inst']:
-        sub = subs[inst['cell']]
-        m = {}
-        for p, n in zip(sub['pins'], inst['nets']):
-            m[p] = netmap.get(n, prefix + '.' + n)
-        path = prefix + '.' + inst['name']
-        if inst['cell'] in tabs:
-            g, y, _ = tabs[inst['cell']]
-            gates.append(dict(path=path, cell=inst['cell'],
-                              ins={p: m[p] for p in g}, out=m[y],
-                              mos=sub['mos']))
-        else:
-            flatten(inst['cell'], path, m)
-top = subs['NEURON']
-flatten('NEURON', 'xdut', {p: p for p in top['pins']})
+gates = C.flatten_gates(subs, tabs, 'NEURON')   # dict(path, cell, ins{pin:net}, out:net, ...)
 driver = {g['out']: g for g in gates}
 for g in gates:
     assert g['out'] in W, g['out']
@@ -188,6 +175,7 @@ for (te, st) in events:
 # ---------------- reporting ----------------
 gl = {g['path']: g for g in gates}
 print('=' * 78)
+print('Netlist: %s' % ev.get('sim', '?'))
 print('Functional check: %d events, %d mismatches, %d output glitches'
       % (len(events), len(func_fail), len(glitches)))
 if glitches:
